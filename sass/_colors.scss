@@ -91,8 +91,8 @@
 @include adaptive_color("infobar_warning_bg_color", gtkalpha(gtkcolor("@warning_color"), 0.15), gtkalpha(gtkcolor("@warning_color"), 0.2));
 @include adaptive_color("infobar_error_bg_color", gtkalpha(gtkcolor("@error_color"), 0.15), gtkalpha(gtkcolor("@error_color"), 0.2));
 @include adaptive_color("selected_tab_bg_color", gtkalpha(gtkcolor("@theme_base_color"), 0.6), gtkalpha(gtkcolor("@theme_base_color"), 0.8));
-@if $DarklyAdjustToDarkThemes {
-  @include adaptive_color("tabbar_bg_color", gtkalpha($DarklyTabBGColor, 0.4), gtkalpha($DarklyTabBGColor,0.2));
+@if $DarklyrcAdjustToDarkThemes {
+  @include adaptive_color("tabbar_bg_color", gtkalpha($DarklyrcTabBGColor, 0.4), gtkalpha($DarklyrcTabBGColor,0.2));
 } @else {
   @include adaptive_color("tabbar_bg_color", rgba(0,0,0,0.2), rgba(0,0,0,0.13));
 }

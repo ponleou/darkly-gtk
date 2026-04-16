@@ -2,14 +2,14 @@
 
 // generic drawing of more complex things
 
-$widget_shadow: if($DarklyWidgetDrawShadow, (0 0 0 1px gtkalpha(black, 0.02),
+$widget_shadow: if($DarklyrcWidgetDrawShadow, (0 0 0 1px gtkalpha(black, 0.02),
                                              0 1px 2px gtkalpha(black, 0.15)),
                                              none);
 
-$card_shadow: if($DarklyWidgetDrawShadow, (0 1px 2px 2px gtkalpha(black, 0.07)),
+$card_shadow: if($DarklyrcWidgetDrawShadow, (0 1px 2px 2px gtkalpha(black, 0.07)),
                                            none);
 
-$toolbar_shadow: if($DarklyWidgetToolBarShadow, (inset 0 -1px gtkalpha(black, 0.025),
+$toolbar_shadow: if($DarklyrcWidgetToolBarShadow, (inset 0 -1px gtkalpha(black, 0.025),
                                                  inset 0 -2px gtkalpha(black, 0.02),
                                                  inset 0 -3px gtkalpha(black, 0.01),
                                                  inset 0 -4px gtkalpha(black, 0.01),
@@ -18,10 +18,10 @@ $toolbar_shadow: if($DarklyWidgetToolBarShadow, (inset 0 -1px gtkalpha(black, 0.
 
 @function button-highlight($transparent:false) {
   $_highlight: if($transparent, gtkalpha($top_hilight, 0), $top_hilight);
-  @if $DarklyFullOutline {
+  @if $DarklyrcFullOutline {
     @return inset 0 0 0 1px $_highlight;
   }
-  @if $DarklyNoOutline {
+  @if $DarklyrcNoOutline {
     @return none;
   }
   @return inset 0 1px $_highlight;

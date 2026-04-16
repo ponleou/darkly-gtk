@@ -4,8 +4,8 @@ A GTK theme to go with the [Darkly Qt style](https://github.com/Bali10050/Darkly
 
 ![preview](preview.png?raw=true)
 
-* Supports GTK 3.20+, GTK 4 and libadwaita
-* Automatically adapts to the Plasma color scheme
+* Supports GTK 3.20+, GTK 4.0+ and libadwaita
+* Automatically follows the Plasma color scheme
 * Customization options from the Darkly Qt style config are applied during installation (work in progress, see `sass/_darkly_default_settings.scss` for the current status)
 
 ## Requirements
@@ -35,15 +35,13 @@ OPTIONS:
 
 ### Flatpak apps
 
-Flatpak apps need permissions to read the user's theme directory.
+Flatpak apps need permission to read the user's theme directory.
 
 ```
 sudo flatpak override --filesystem=xdg-data/themes
 ```
 
-### Libadwaita Flatpak apps
-
-If you installed the libadwaita theme, you have to enable grant permissions as well
+For Flatpak apps to be able to use the libadwaita theme, you have to grant these permissions as well
 
  ```
 sudo flatpak override --filesystem=xdg-config/gtk-4.0

@@ -3,22 +3,22 @@
 //
 
 // Draw toolbar item separators
-$DarklyToolBarDrawItemSeparator: false;
+$DarklyrcToolBarDrawItemSeparator: false;
 
 // Float and sunken effect on checkboxes and radio buttons
 // TODO
 
 // Increase button height
-$DarklyButtonHeight: 3px;
+$DarklyrcButtonHeight: 3;
 
 // Increase button width
-$DarklyButtonWidth: 1px;
+$DarklyrcButtonWidth: 1;
 
 // Corner radius
-$DarklyCornerRadius: 9px;
+$DarklyrcCornerRadius: 9;
 
 // Menu item height
-$DarklyMenuItemHeight: 4px;
+$DarklyrcMenuItemHeight: 4;
 
 
 //
@@ -26,24 +26,24 @@ $DarklyMenuItemHeight: 4px;
 //
 
 // Tab style
-$DarklyOldTabbar: false;      // Lightly Default
-$DarklyTabBarAltStyle: false; // Lightly Alternative
+$DarklyrcOldTabbar: false;      // Lightly Default
+$DarklyrcTabBarAltStyle: false; // Lightly Alternative
 
 // Draw highlight on active tab
 // TODO
 
 // Use highlight color as selected tab background
-$DarklyTabUseHighlightColor: false;
+$DarklyrcTabUseHighlightColor: false;
 
 // Tab size
 // TODO
 
 // Use brighter close icon
-$DarklyTabUseBrighterCloseIcon: false;
+$DarklyrcTabUseBrighterCloseIcon: false;
 
 // Custom tabbar background
-$DarklyAdjustToDarkThemes: false;
-$DarklyTabBGColor: rgb(0,0,0);
+$DarklyrcAdjustToDarkThemes: false;
+$DarklyrcTabBGColor: rgb(0,0,0);
 
 
 //
@@ -70,16 +70,16 @@ $DarklyTabBGColor: rgb(0,0,0);
 // TODO
 
 // Draw a thin line to indicate focus in menus and menubars
-$DarklyMenuItemDrawStrongFocus: true;
+$DarklyrcMenuItemDrawStrongFocus: true;
 
 // Fancy margins
 // TODO
 
 // Full outline
-$DarklyFullOutline: false;
+$DarklyrcFullOutline: false;
 
 // No outline
-$DarklyNoOutline: false;
+$DarklyrcNoOutline: false;
 
 
 //
@@ -115,10 +115,10 @@ $DarklyNoOutline: false;
 // TODO
 
 // Draw widget shadow
-$DarklyWidgetDrawShadow: true;
+$DarklyrcWidgetDrawShadow: true;
 
 // Draw shadow under toolbar
-$DarklyWidgetToolBarShadow: false;
+$DarklyrcWidgetToolBarShadow: false;
 
 
 //
@@ -126,7 +126,7 @@ $DarklyWidgetToolBarShadow: false;
 //
 
 // Window corner radius
-$DarklyOtherCornerRadius: 6px;
+$DarklyrcOtherCornerRadius: 6;
 
 // Button size
 // TODO
@@ -147,4 +147,4 @@ $DarklyOtherCornerRadius: 6px;
 // TODO
 
 // Shadow color
-$DarklyShadowColor: rgb(0,0,0);
+$DarklyrcShadowColor: rgb(0,0,0);

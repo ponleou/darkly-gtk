@@ -38,7 +38,7 @@ EOF
 
 parse_darklyrc() {
     if [ -f "$DARKLYRC" ]; then
-        echo "darklyrc found: $DARKLYRC"
+        echo "Darkly config found: $DARKLYRC"
 
         # Remove sections
         r0='/^\[.*/d'
@@ -46,20 +46,20 @@ parse_darklyrc() {
         r1='/^$/d'
         # Replace = with :
         r2='s/=/: /g'
-        # Add pixel units
-        r3='s/(: [0-9]+$)/\1px/g'
         # Add $Darkly at the beginning of the line
-        r4='s/^/\$Darkly/g'
+        r3='s/^/\$Darklyrc/g'
         # Add ; at the end of the line
-        r5='s/$/\;/g'
+        r4='s/$/\;/g'
         # Convert to rgb colors
-        r6='s/([0-9]+,[0-9]+,[0-9]+)/rgb\(\1\)/'
+        r5='s/([0-9]+(,[0-9]+){2})/rgb\(\1\)/'
 
-        echo "Writing Darkly-gtk user config..."
-        echo ""
-        sed -r "$r0;$r1;$r2;$r3;$r4;$r5;$r6" "$DARKLYRC" | tee "$USER_SETTINGS"
-        echo ""
+        echo
+        echo "Writing GTK theme user config:"
+        echo
+        sed -r "$r0;$r1;$r2;$r3;$r4;$r5" "$DARKLYRC" | tee "$USER_SETTINGS"
+        echo
     else
+        echo
         echo "darklyrc not found. Using default settings."
         echo "" > "$USER_SETTINGS"
     fi
@@ -67,6 +67,7 @@ parse_darklyrc() {
 
 install_theme() {
     echo "Generating CSS files..."
+    echo
     mkdir -p "$SOURCE_DIR/build"
     sassc $SASSC_OPT "$SOURCE_DIR/sass/gtk3-light.scss" "$SOURCE_DIR/build/gtk3-light.css" || { echo "GTK 3 CSS generation failed." ; exit 1; }
     sassc $SASSC_OPT "$SOURCE_DIR/sass/gtk3-dark.scss" "$SOURCE_DIR/build/gtk3-dark.css" || { echo "GTK 3 CSS generation failed." ; exit 1; }
@@ -104,8 +105,6 @@ install_libadwaita() {
         if ! cmp --silent -- "$GTK4DIR/gtk.css" <(echo -n "$css"); then
             echo "Backing up $GTK4DIR/gtk.css"
             mv "$GTK4DIR/gtk.css" "$GTK4DIR/gtk.css.created_by_darkly_installer.bak"
-        else
-            echo "gtk.css unmodified"
         fi
     fi
 
@@ -115,6 +114,10 @@ install_libadwaita() {
     mkdir -p "$GTK4DIR/darkly-gtk-assets"
     cp -r "$SOURCE_DIR/assets/"*.{png,svg} "$GTK4DIR/darkly-gtk-assets/"
     cp "$DEST_DIR/Darkly/gtk-4.0/gtk.css" "$GTK4DIR/gtk-darkly.css"
+
+    echo
+    echo "Installation successful"
+    echo
 }
 
 uninstall () {

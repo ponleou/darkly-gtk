@@ -171,7 +171,7 @@ dnd {
   }
 }
 
-@if $DarklyOldTabbar {
+@if $DarklyrcOldTabbar {
   tabbar,
   dnd {
     tab {
@@ -186,7 +186,7 @@ dnd {
     border-bottom-right-radius: 0;
   }
 
-} @else if $DarklyTabBarAltStyle {
+} @else if $DarklyrcTabBarAltStyle {
   $_tab_line_bg: gtkmix($bg_color, $fg_color, 0.85);
   $_selected_tab_line_bg: gtkcolor("@theme_button_decoration_focus");
   $_backdrop_selected_tab_line_bg: gtkcolor("@theme_button_decoration_focus_backdrop");

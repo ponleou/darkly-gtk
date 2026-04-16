@@ -1,15 +1,21 @@
+$DarklyrcButtonHeight: $DarklyrcButtonHeight + 0px;
+$DarklyrcButtonWidth: $DarklyrcButtonWidth + 0px;
+$DarklyrcCornerRadius: $DarklyrcCornerRadius + 0px;
+$DarklyrcMenuItemHeight: $DarklyrcMenuItemHeight + 0px;
+$DarklyrcOtherCornerRadius: $DarklyrcOtherCornerRadius + 0px;
+
 $ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 $backdrop_transition: 200ms ease-out;
 $button_transition: all 200ms $ease-out-quad;
 $focus_transition: outline-width 200ms $ease-out-quad, outline-offset 200ms $ease-out-quad; // FIXME integrate it
-$radius: $DarklyCornerRadius;
+$radius: $DarklyrcCornerRadius;
 $button_radius: $radius - 1px;
 $circular_radius: if($button_radius==0, 0, 9999px);
 $menu_radius: $radius + 1px;
 $menu-margin: ($menu_radius / 2) - 1px; //margin around menuitems & sidebar items
-$menu_item_padding: $DarklyMenuItemHeight;
+$menu_item_padding: $DarklyrcMenuItemHeight;
 $popover_radius: $radius + 1px;
-$window_radius: $DarklyOtherCornerRadius * 2;
+$window_radius: $DarklyrcOtherCornerRadius * 2;
 
 
 // Optional compact sizes for buttons, headerbar and headerbar widgets
@@ -558,7 +564,7 @@ entry {
      .linked:not(.vertical) > &:drop(active) + filechooserbutton > button,
      .linked:not(.vertical) > &:drop(active) + filechooserbutton > combobox > box > button.combo,
      .linked:not(.vertical) > &:drop(active) + appchooserbutton > combobox > box > button.combo,
-     .linked:not(.vertical) > &:drop(active) + combobox > box > button.combo { border-left-color: $drop_target_color; } //FIXME darkly doesn't have borders
+     .linked:not(.vertical) > &:drop(active) + combobox > box > button.combo { border-left-color: $drop_target_color; } //FIXME Darkly doesn't have borders
 
   // Vertically linked entries
   // FIXME: take care of "colored" entries
@@ -604,7 +610,7 @@ entry {
       + filechooserbutton > button,
       + filechooserbutton > combobox > box > button.combo,
       + appchooserbutton > combobox > box > button.combo,
-      + combobox > box > button.combo { border-top-color: $drop_target_color; } //FIXME darkly doesn't have borders
+      + combobox > box > button.combo { border-top-color: $drop_target_color; } //FIXME Darkly doesn't have borders
     }
   }
 
@@ -759,8 +765,8 @@ $_ripple_color: gtkshade($button_active_bg_color, 0.9);
 button {
   @at-root %button_basic, & {
 
-    min-height: 23px + $DarklyButtonHeight;
-    min-width: 16px + $DarklyButtonWidth;
+    min-height: 23px + $DarklyrcButtonHeight;
+    min-width: 16px + $DarklyrcButtonWidth;
     padding: $_btn_pad;
     border-radius: $button_radius;
     transition: $button_transition;
@@ -861,7 +867,7 @@ button {
     }
 
     &.image-button {
-      min-width:  23px + $DarklyButtonHeight;
+      min-width:  23px + $DarklyrcButtonHeight;
       padding-left: $_img_btn_pad;
       padding-right: $_img_btn_pad;
     }
@@ -1073,7 +1079,7 @@ button {
   @at-root %circular_button,
   menubutton.circular &,
   &.circular {
-    min-width:  23px + $DarklyButtonHeight;
+    min-width:  23px + $DarklyrcButtonHeight;
     padding-left: $_img_btn_pad;
     padding-right: $_img_btn_pad;
     border-radius: $circular_radius;
@@ -1203,7 +1209,7 @@ modelbutton.flat,
   @extend %undecorated_button;
 
   &:hover {
-    @if $DarklyMenuItemDrawStrongFocus {
+    @if $DarklyrcMenuItemDrawStrongFocus {
       color: $menu_selected_fg_color;
       background-color: $menu_selected_bg_color;
     } @else {
@@ -1249,7 +1255,7 @@ modelbutton.flat arrow {
 
 button.color {
   padding: 4px;
-  min-height: 23px + $DarklyButtonHeight - 4px;
+  min-height: 23px + $DarklyrcButtonHeight - 4px;
 
   colorswatch:only-child {
     &, overlay { border-radius: max($button-radius - 4px, 0) ; }
@@ -1467,8 +1473,8 @@ combobox {
 
   button {
     min-width: 0;
-    padding-left: $DarklyButtonHeight + 4px;
-    padding-right: $DarklyButtonHeight + 4px;
+    padding-left: $DarklyrcButtonHeight + 4px;
+    padding-right: $DarklyrcButtonHeight + 4px;
   }
 
   // align menu labels with the button label
@@ -1540,12 +1546,12 @@ combobox {
 %toolbar {
   @if $gtkver=="3" { -GtkWidget-window-dragging: true; }
 
-  @if $DarklyWidgetToolBarShadow {
+  @if $DarklyrcWidgetToolBarShadow {
     &, &:backdrop {   @include _shadows($toolbar_shadow); }
   }
 
   separator {
-    background: if($DarklyToolBarDrawItemSeparator, gtkalpha($toolbar_fg_color, 0.05), gtkalpha($toolbar_fg_color, 0));
+    background: if($DarklyrcToolBarDrawItemSeparator, gtkalpha($toolbar_fg_color, 0.05), gtkalpha($toolbar_fg_color, 0));
   }
 
   padding: 4px;
@@ -1818,7 +1824,7 @@ headerbar {
   @include _shadows(inset 0 1px $top_hilight, $toolbar_shadow);
 
   separator {
-    background: if($DarklyToolBarDrawItemSeparator, gtkalpha($titlebar_fg_color, 0.05), gtkalpha($titlebar_fg_color, 0));
+    background: if($DarklyrcToolBarDrawItemSeparator, gtkalpha($titlebar_fg_color, 0.05), gtkalpha($titlebar_fg_color, 0));
   }
 
   button:not(.raised):not(.suggested-action):not(.destructive-action):not(.opaque):not(.close):not(.minimize):not(.maximize) {
@@ -2460,7 +2466,7 @@ treeview.view {
       background-color: $menu_bg_color;
       background-clip: padding-box;
       border: 1px solid $menu_border;
-      box-shadow: 0 1px 2px transparentize($DarklyShadowColor, 0.7);
+      box-shadow: 0 1px 2px transparentize($DarklyrcShadowColor, 0.7);
     }
 
     &:backdrop {
@@ -2537,7 +2543,7 @@ treeview.view {
       border-radius: $menu_radius - 2px;
 
       &:hover {
-        @if $DarklyMenuItemDrawStrongFocus {
+        @if $DarklyrcMenuItemDrawStrongFocus {
           color: $menu_selected_fg_color;
           background-color: $menu_selected_bg_color;
         } @else {
@@ -2648,7 +2654,7 @@ treeview.view {
       border-radius: $button_radius;
 
       &:hover { //Seems like it :hover even with keyboard focus
-        @if $DarklyMenuItemDrawStrongFocus {
+        @if $DarklyrcMenuItemDrawStrongFocus {
           color: $button_focus_fg_color;
           background-color: $button_focus_bg_color;
         } @else {
@@ -2753,7 +2759,7 @@ treeview.view {
       border-radius: $menu_radius - 2px;
 
       &:selected {
-        @if $DarklyMenuItemDrawStrongFocus {
+        @if $DarklyrcMenuItemDrawStrongFocus {
           color: $menu_selected_fg_color;
           background-color: $menu_selected_bg_color;
         } @else {
@@ -2765,7 +2771,7 @@ treeview.view {
         }
       }
       &:selected:active {
-        @if $DarklyMenuItemDrawStrongFocus {
+        @if $DarklyrcMenuItemDrawStrongFocus {
           color: $menu_selected_fg_color;
           background-color: gtkshade($menu_selected_bg_color, 0.8);
         }
@@ -2793,7 +2799,7 @@ treeview.view {
 
         &:hover {
           &, &:selected.activatable {
-            @if $DarklyMenuItemDrawStrongFocus {
+            @if $DarklyrcMenuItemDrawStrongFocus {
               color: $menu_selected_fg_color;
               background-color: $menu_selected_bg_color;
             } @else {
@@ -2807,7 +2813,7 @@ treeview.view {
 
         &:active {
           &, &:selected.activatable {
-            @if $DarklyMenuItemDrawStrongFocus {
+            @if $DarklyrcMenuItemDrawStrongFocus {
               color: $menu_selected_fg_color;
               background-color: gtkshade($menu_selected_bg_color, 0.8);
             }
@@ -2858,7 +2864,7 @@ treeview.view {
       border-radius: $button_radius;
 
       &:selected { //Seems like it :hover even with keyboard focus
-        @if $DarklyMenuItemDrawStrongFocus {
+        @if $DarklyrcMenuItemDrawStrongFocus {
           color: $button_focus_fg_color;
           background-color: $button_focus_bg_color;
         } @else {
@@ -3009,7 +3015,7 @@ notebook {
           transition: none;
         }
 
-        &, &:backdrop { color: gtkalpha(currentColor, if($DarklyTabUseBrighterCloseIcon, 1, 0.4)); }
+        &, &:backdrop { color: gtkalpha(currentColor, if($DarklyrcTabUseBrighterCloseIcon, 1, 0.4)); }
 
         padding: 0;
         min-width: 18px;
@@ -3078,7 +3084,7 @@ notebook {
   }
 }
 
-@if $DarklyOldTabbar {
+@if $DarklyrcOldTabbar {
   notebook {
     > header {
       &.top {
@@ -3111,7 +3117,7 @@ notebook {
       }
     }
   }
-} @else if $DarklyTabBarAltStyle {
+} @else if $DarklyrcTabBarAltStyle {
   notebook {
     $_tab_line_bg: gtkmix($bg_color, $fg_color, 0.85);
     $_selected_tab_line_bg: gtkcolor("@theme_button_decoration_focus");
@@ -5154,15 +5160,15 @@ colorchooser .popover.osd { border-radius: $radius; }
 /**********************
  * Window Decorations *
  *********************/
-$_window_shadow: 0 0 0 1px gtkalpha($DarklyShadowColor, 0.1),
-                 0 6px 15px 1px gtkalpha($DarklyShadowColor, 0.3);
-$_backdrop_window_shadow: 0 0 0 1px gtkalpha($DarklyShadowColor, 0.1),
-                          0 6px 15px 1px gtkalpha($DarklyShadowColor, 0.3);
-$_popup_shadow: 0 0 0 1px gtkalpha($DarklyShadowColor, 0.07),
-                0 4px 6px 1px gtkalpha($DarklyShadowColor, 0.2);
+$_window_shadow: 0 0 0 1px gtkalpha($DarklyrcShadowColor, 0.1),
+                 0 6px 15px 1px gtkalpha($DarklyrcShadowColor, 0.3);
+$_backdrop_window_shadow: 0 0 0 1px gtkalpha($DarklyrcShadowColor, 0.1),
+                          0 6px 15px 1px gtkalpha($DarklyrcShadowColor, 0.3);
+$_popup_shadow: 0 0 0 1px gtkalpha($DarklyrcShadowColor, 0.07),
+                0 4px 6px 1px gtkalpha($DarklyrcShadowColor, 0.2);
 $_dialog_shadow: $_popup_shadow;
-$_tooltip_shadow: 0 0 0 1px gtkalpha($DarklyShadowColor, 0.1),
-                  0 3px 6px 1px gtkalpha($DarklyShadowColor, 0.3);
+$_tooltip_shadow: 0 0 0 1px gtkalpha($DarklyrcShadowColor, 0.1),
+                  0 3px 6px 1px gtkalpha($DarklyrcShadowColor, 0.3);
 
 @mixin _tiled {
   border-radius: 0;

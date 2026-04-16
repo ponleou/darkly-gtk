@@ -32,10 +32,10 @@ $color_suffix: _breeze;
 
 @function selected_tab_bg_color($backdrop:false) {
     @if $backdrop==false {
-        @if $DarklyTabUseHighlightColor { @return #{$selected_bg_color}; }
+        @if $DarklyrcTabUseHighlightColor { @return #{$selected_bg_color}; }
         @else { @return gtkcolor("@selected_tab_bg_color"); }
     } @else {
-        @if $DarklyTabUseHighlightColor { @return #{$backdrop_selected_bg_color}; }
+        @if $DarklyrcTabUseHighlightColor { @return #{$backdrop_selected_bg_color}; }
         @else { @return gtkcolor("@selected_tab_bg_color"); }
     }
 }
