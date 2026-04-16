@@ -4664,6 +4664,8 @@ stacksidebar {
     @include _shadows($card_shadow);
   }
 
+  list separator { background: none; }
+
   row {
     padding: 6px 2px;
     border-radius: $radius;
@@ -4674,6 +4676,7 @@ stacksidebar {
     &.activatable:hover { background-color: $sidebar_hover_bg; }
 
     > label {
+      min-height: 26px;
       padding-left: 6px;
       padding-right: 6px;
     }
