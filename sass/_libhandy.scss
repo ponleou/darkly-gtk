@@ -8,12 +8,23 @@ window.unified {
 }
 
 viewswitcher {
+  headerbar & {
+    margin-top: 3px;
+    margin-bottom: 3px;
+  }
+
   button {
     box-shadow: none;
-    padding: 0;
-    margin-left: 1px;
-    margin-right: 1px;
+    padding: 0 10px;
+    margin: 0 2px;
   }
+
+  stack > box {
+    &.narrow {
+      font-size: 0.75rem;
+    }
+  }
+
 }
 
 

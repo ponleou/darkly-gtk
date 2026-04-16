@@ -2034,8 +2034,7 @@ headerbar {
     separator:not(.sidebar),
     button,
     menubutton,
-    splitbutton,
-    viewswitcher {
+    splitbutton {
       margin-top: $_hb_btn_pad;
       margin-bottom: $_hb_btn_pad;
     }
