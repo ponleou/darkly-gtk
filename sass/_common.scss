@@ -1717,16 +1717,25 @@ searchbar .close {
     &:not(.empty) {
       &.start:dir(ltr),
       &.end:dir(rtl) {
-        margin-right: 7px;
+        margin-left: 3px; margin-right: 4px;
       }
 
       &.start:dir(rtl),
       &.end:dir(ltr) {
-        margin-left: 7px;
+        margin-right: 3px; margin-left: 4px;
       }
     }
 
     image.icon { min-width: 28px; }
+  }
+} @else {
+  headerbar,
+  .titlebar {
+    .right,
+    .left:dir(rtl) { margin-right: 2px; }
+
+    .left,
+    .right:dir(rtl) { margin-left: 2px; }
   }
 }
 
@@ -1816,7 +1825,7 @@ windowcontrols > button.image-button {
  ***************/
 %titlebar,
 headerbar {
-  padding: 0 6px;
+  padding: 0 $_hb_btn_pad;
   min-height: $_headerbar_height;
   border-radius: 0;
   color: $titlebar_fg_color;
