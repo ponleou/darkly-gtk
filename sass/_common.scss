@@ -3131,28 +3131,21 @@ notebook {
     $_backdrop_selected_tab_highlight: gtkcolor("@theme_button_decoration_focus_backdrop");
 
     notebook > header {
-      &.top {
-        tabs tab {
-          &:checked { @include _shadows($widget_shadow, inset 0 2px $_selected_tab_highlight); }
-          &:checked:backdrop { @include _shadows($widget_shadow, inset 0 2px $_backdrop_selected_tab_highlight); }
-        }
-      }
-      &.bottom {
-        tabs tab {
-          &:checked { @include _shadows($widget_shadow, inset 0 -2px $_selected_tab_highlight); }
-          &:checked:backdrop { @include _shadows($widget_shadow, inset 0 -2px $_backdrop_selected_tab_highlight); }
-        }
-      }
-      &.left {
-        tabs tab {
-          &:checked { @include _shadows($widget_shadow, inset 2px 0 $_selected_tab_highlight); }
-          &:checked:backdrop { @include _shadows($widget_shadow, inset 2px 0 $_backdrop_selected_tab_highlight); }
-        }
-      }
-      &.right {
-        tabs tab {
-          &:checked { @include _shadows($widget_shadow, inset -2px 0 $_selected_tab_highlight); }
-          &:checked:backdrop { @include _shadows($widget_shadow, inset -2px 0 $_backdrop_selected_tab_highlight); }
+      @each $pos, $dir in ("top", "bottom"),
+                          ("bottom", "top"),
+                          ("left", "right"),
+                          ("right", "left") {
+        &.#{$pos} {
+          tabs tab {
+            &:checked {
+              background-image: linear-gradient(to #{$dir}, $_selected_tab_highlight 2px,
+                                                           transparent 2px);
+            }
+            &:checked:backdrop {
+              background-image: linear-gradient(to #{$dir}, $_backdrop_selected_tab_highlight 2px,
+                                                           transparent 2px);
+            }
+          }
         }
       }
     }

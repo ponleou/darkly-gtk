@@ -192,8 +192,14 @@ dnd {
 
     tabbar {
       tab {
-        &:selected { @include _shadows($widget_shadow, inset 0 2px $_selected_tab_highlight); }
-        &:selected:backdrop { @include _shadows($widget_shadow, inset 0 2px $_backdrop_selected_tab_highlight); }
+        &:selected {
+          background-image: linear-gradient(to bottom, $_selected_tab_highlight 2px,
+                                                       transparent 2px);
+        }
+        &:selected:backdrop {
+          background-image: linear-gradient(to bottom, $_backdrop_selected_tab_highlight 2px,
+                                                       transparent 2px);
+        }
       }
     }
   }
