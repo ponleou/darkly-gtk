@@ -39,24 +39,29 @@ EOF
 parse_darklyrc() {
     if [ -f "$DARKLYRC" ]; then
         echo "Darkly config found: $DARKLYRC"
-
-        # Remove sections
-        r0='/^\[.*/d'
-        # Remove empty lines
-        r1='/^$/d'
-        # Replace = with :
-        r2='s/=/: /g'
-        # Add $Darkly at the beginning of the line
-        r3='s/^/\$Darklyrc/g'
-        # Add ; at the end of the line
-        r4='s/$/\;/g'
-        # Convert to rgb colors
-        r5='s/([0-9]+(,[0-9]+){2})/rgb\(\1\)/'
-
         echo
         echo "Writing GTK theme user config:"
         echo
-        sed -r "$r0;$r1;$r2;$r3;$r4;$r5" "$DARKLYRC" | tee "$USER_SETTINGS"
+
+        awk '
+            function trim(s) { gsub(/^[ \t]+|[ \t]+$/, "", s); return s }
+
+            /^\[(Common|Style|Windeco)\]/ { keep=1; next }
+            /^\[/ { keep=0 }
+
+            keep && /^[^=]+=.*$/ {
+                split($0, a, "=")
+                key = trim(a[1])
+                val = trim(a[2])
+
+                if (val ~ /^[0-9]+,[ \t]*[0-9]+,[ \t]*[0-9]+$/) {
+                    split(val, rgb, ",")
+                    val = sprintf("rgb(%s, %s, %s)", rgb[1], rgb[2], rgb[3])
+                }
+
+                printf("$Darklyrc%s: %s;\n", key, val)
+            }
+            ' "$DARKLYRC" | tee "$USER_SETTINGS"
         echo
     else
         echo
