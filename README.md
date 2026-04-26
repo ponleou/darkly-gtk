@@ -1,15 +1,17 @@
 # Darkly GTK theme
 
-A GTK theme to go with the [Darkly Qt style](https://github.com/Bali10050/Darkly) by Bali10050
+A GTK port of the [Darkly Qt style](https://github.com/Bali10050/Darkly) by Bali10050
+
+The goal of this project is to provide a GTK theme that matches the Darkly theme for Qt applications to achieve a consistent Darkly-styled Plasma desktop.
 
 ![preview](preview.png?raw=true)
 
 * Supports GTK 3.20+, GTK 4.0+ and libadwaita
 * Automatically follows the Plasma color scheme
-* Customization options from the Darkly Qt style config are applied during installation (work in progress, see `sass/_darkly_default_settings.scss` for the current status)
+* Customization options from the Darkly Qt style config (corner radius, tab style, etc. ) are applied during installation (work in progress, see `sass/_darkly_default_settings.scss` for the current status). That means that you have to re-run the install script after changing the Darkly Qt settings.
 
 ## Requirements
-`sassc` to generate the theme's CSS files
+`sassc` build dependency
 
 ## Installation
 
@@ -32,6 +34,8 @@ OPTIONS:
 -u      Uninstall the theme
 -h      Show help
 ```
+
+Note: While install script will attempt to back up/restore your `.config/gtk-4.0.css` file it is a good idea to back up any important changes you made before running the install script.
 
 ### Flatpak apps
 
