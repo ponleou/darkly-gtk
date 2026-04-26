@@ -3093,36 +3093,38 @@ notebook {
 }
 
 @if $DarklyrcOldTabbar {
-  notebook {
-    > header {
-      &.top {
-        border-radius: $radius $radius 0 0;
+  notebook > header {
+    @each $pos1, $pos2 in ("top", "bottom"),
+                          ("bottom", "top"),
+                          ("left", "right"),
+                          ("right", "left") {
+      &.#{$pos1} {
+        @if $pos2=="top" or $pos2=="bottom" {
+          border-#{$pos2}-left-radius: 0;
+          border-#{$pos2}-right-radius: 0;
+        } @else {
+          border-top-#{$pos2}-radius: 0;
+          border-bottom-#{$pos2}-radius: 0;
+        }
         tabs {
-          margin: 3px 0 0 0;
-          tab { border-radius: $radius $radius 0 0; margin: 0 3px;}
+          margin: 0;
+          margin-#{$pos1}: 3px;
+          tab {
+            margin: 3px;
+            margin-#{$pos1}: 0;
+            margin-#{$pos2}: 0;
+
+            @if $pos2=="top" or $pos2=="bottom" {
+              border-#{$pos2}-left-radius: 0;
+              border-#{$pos2}-right-radius: 0;
+            } @else {
+              border-top-#{$pos2}-radius: 0;
+              border-bottom-#{$pos2}-radius: 0;
+            }
+          }
         }
       }
-      &.bottom {
-        border-radius: 0 0 $radius $radius;
-        tabs {
-          margin: 0 0 3px 0;
-          tab { border-radius: 0 0 $radius $radius; margin: 0 3px;}
-        }
-      }
-      &.left {
-        border-radius: $radius 0 0 $radius;
-        tabs {
-          margin: 0 0 0 3px;
-          tab { border-radius: $radius 0 0 $radius; margin: 3px 0;}
-        }
-      }
-      &.right {
-        border-radius: 0 $radius $radius 0;
-        tabs {
-          margin: 0 3px 0 0;
-          tab { border-radius: 0 $radius $radius 0; margin: 3px 0;}
-        }
-      }
+
     }
   }
 
@@ -3168,56 +3170,22 @@ notebook {
         }
       }
 
-      &.top tabs {
-        tab {
-          margin: 0;
-          box-shadow: inset 0 -2px $_tab_line_bg;
+      @each $pos, $dir, $x, $y, $pad in ("top", "bottom", 0, -2px, 4px),
+                                        ("bottom", "top", 0, 2px, 4px),
+                                        ("left", "right", -2px, 0, 13px),
+                                        ("right", "left", 2px, 0, 13px) {
+        &.#{$pos} tabs {
+          tab {
+            margin: 0;
+            box-shadow: inset $x $y $_tab_line_bg;
 
-          &:checked {
-            margin-bottom: -1px;
-            padding-bottom: 4px;
-            box-shadow: inset 0 -4px $_selected_tab_line_bg;
+            &:checked {
+              margin-#{$dir}: -1px;
+              padding-#{$dir}: $pad;
+              box-shadow: inset 2*$x 2*$y $_selected_tab_line_bg;
 
-            &:backdrop { box-shadow: inset 0 -4px $_backdrop_selected_tab_line_bg; }
-          }
-        }
-      }
-      &.bottom tabs {
-        tab {
-          margin: 0;
-          box-shadow: inset 0 2px $_tab_line_bg;
-          &:checked {
-            margin-top: -1px;
-            padding-top: 4px;
-            box-shadow: inset 0 4px $_selected_tab_line_bg;
-
-            &:backdrop { box-shadow: inset 0 4px $_backdrop_selected_tab_line_bg; }
-          }
-        }
-      }
-      &.left tabs {
-        tab {
-          margin: 0;
-          box-shadow: inset -2px 0 $_tab_line_bg;
-          &:checked {
-            margin-right: -1px;
-            padding-right: 13px;
-            box-shadow: inset -4px 0 $_selected_tab_line_bg;
-
-            &:backdrop { box-shadow: inset -4px 0 $_backdrop_selected_tab_line_bg; }
-          }
-        }
-      }
-      &.right tabs {
-        tab {
-          margin: 0;
-          box-shadow: inset 2px 0 $_tab_line_bg;
-          &:checked {
-            margin-left: -1px;
-            padding-left: 13px;
-            box-shadow: inset 4px 0 $_selected_tab_line_bg;
-
-            &:backdrop { box-shadow: inset 4px 0 $_backdrop_selected_tab_line_bg; }
+              &:backdrop { box-shadow: inset 2*$x 2*$y $_backdrop_selected_tab_line_bg; }
+            }
           }
         }
       }
