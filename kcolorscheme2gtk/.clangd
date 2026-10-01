@@ -1,0 +1,9 @@
+CompileFlags:
+  Add:
+    - -I/usr/include/qt6
+    - -I/usr/include/qt6/QtCore
+    - -I/usr/include/qt6/QtGui
+    - -I/usr/include/KF6/KGuiAddons
+    - -I/usr/include/KF6/KColorScheme
+    - -I/usr/include/KF6/KConfig
+    - -I/usr/include/KF6/KConfigCore
