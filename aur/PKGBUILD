@@ -3,7 +3,7 @@
 _libadwaita_support=1
 
 pkgname=darkly-gtk-git
-pkgver=r13.36d24ba
+pkgver=r14.986eef2
 pkgrel=1
 pkgdesc="Darkly GTK theme"
 arch=('any')
@@ -12,7 +12,7 @@ license=('LGPL2.1')
 depends=()
 makedepends=('git' 'sassc')
 conflicts=('darkly-gtk')
-source=("${pkgname}::git+https://github.com/wrymt/darkly-gtk.git")
+source=("${pkgname}::git+https://github.com/ponleou/darkly-gtk.git#branch=fix/respect-colors-css")
 sha256sums=('SKIP')
 
 pkgver() {
@@ -81,7 +81,7 @@ package() {
     if [[ $_libadwaita_support -eq 1 ]]; then
         cp build/gtk4.css "$pkgdir/usr/share/themes/Darkly/gtk-4.0/gtk-base.css"
         ln -fs ./gtk-base.css "$pkgdir/usr/share/themes/Darkly/gtk-4.0/gtk-dark.css"
-        echo -n $'@import \'gtk-darkly.css\';\n@import \'colors.css\';' > "$pkgdir/usr/share/themes/Darkly/gtk-4.0/gtk.css"
+        echo -n $'@import \'gtk-dark.css\';\n@import \'colors.css\';' > "$pkgdir/usr/share/themes/Darkly/gtk-4.0/gtk.css"
     else
         cp build/gtk4.css "$pkgdir/usr/share/themes/Darkly/gtk-4.0/gtk.css"
         ln -fs ./gtk.css "$pkgdir/usr/share/themes/Darkly/gtk-4.0/gtk-dark.css"
