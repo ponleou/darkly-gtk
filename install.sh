@@ -118,7 +118,7 @@ install_libadwaita() {
 
     mkdir -p "$GTK4DIR/darkly-gtk-assets"
     cp -r "$SOURCE_DIR/assets/"*.{png,svg} "$GTK4DIR/darkly-gtk-assets/"
-    cp "$DEST_DIR/Darkly/gtk-4.0/gtk.css" "$GTK4DIR/gtk-darkly.css"
+    cp "$DEST_DIR/Darkly/gtk-4.0/gtk.css" "$GTK4DIR/gtk-dark.css"
 
     echo
     echo "Installation successful"
