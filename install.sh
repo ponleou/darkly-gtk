@@ -97,10 +97,10 @@ install_libadwaita() {
     mkdir -p "$GTK4DIR"
 
     if [ -f "$GTK4DIR/colors.css" ]; then
-        css=$'/* DO NOT MODIFY. THIS FILE WAS CREATED AUTOMATICALLY */\n@import \'gtk-darkly.css\';\n@import \'colors.css\';'
+        css=$'/* DO NOT MODIFY. THIS FILE WAS CREATED AUTOMATICALLY */\n@import \'gtk-dark.css\';\n@import \'colors.css\';'
         #echo "colors.css found"
     else
-        css=$'/* DO NOT MODIFY. THIS FILE WAS CREATED AUTOMATICALLY */\n@import \'gtk-darkly.css\';'
+        css=$'/* DO NOT MODIFY. THIS FILE WAS CREATED AUTOMATICALLY */\n@import \'gtk-dark.css\';'
         #echo "colors.css not found"
     fi
 
