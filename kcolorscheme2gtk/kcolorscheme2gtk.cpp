@@ -10,7 +10,9 @@
 #include <QCoreApplication>
 #include <QFile>
 #include <QHash>
+#include <QList>
 #include <QMap>
+#include <QPair>
 #include <QString>
 #include <QTextStream>
 
@@ -355,6 +357,55 @@ int main(int argc, char *argv[]) {
   for (auto it = result.cbegin(); it != result.cend(); ++it) {
     outStream << QStringLiteral("@define-color %1 %2;\n")
                      .arg(it.key(), it.value().name());
+  }
+
+  // ---- Extended color variables ----
+  QColor selectedBgColor =
+      csc["active"]["selection"].background(KCS::NormalBackground).color();
+  QColor selectedFgColor = 
+      csc["active"]["selection"].foreground(KCS::NormalText).color();
+  QColor viewForegroundColor =
+      csc["active"]["view"].foreground(KCS::NormalText).color();
+  QColor viewBaseColor =
+      csc["active"]["view"].background(KCS::NormalBackground).color();
+  QColor headerBackgroundColor =
+      csc["active"]["header"].background(KCS::NormalBackground).color();
+  QColor headerBackdropBackgroundColor =
+      csc["inactive"]["header"].background(KCS::NormalBackground).color();
+  QColor errorColor =
+      csc["active"]["view"].foreground(KCS::NegativeText).color();
+  QColor successColor =
+      csc["active"]["view"].foreground(KCS::PositiveText).color();
+  QColor warningColor =
+      csc["active"]["view"].foreground(KCS::NeutralText).color();
+
+  QList<QPair<QString, QColor>> extended = {
+      {"accent_color_breeze", selectedBgColor},                             // darkly: --accent-color: $selected_bg_color
+      {"accent_bg_color_breeze", selectedBgColor},                          // darkly: --accent-bg-color: var(--accent-color)
+      {"accent_fg_color_breeze", selectedFgColor},                          // darkly: $selected-fg-color
+      {"destructive_bg_color_breeze", errorColor},                          // darkly: --destructive-bg-color: $destructive-color ($error_color)
+      {"destructive_fg_color_breeze", selectedFgColor},                     // darkly: $selected-fg-color
+      {"success_bg_color_breeze", successColor},                            // darkly: --success-bg-color: $success_color
+      {"success_fg_color_breeze", selectedFgColor},                         // darkly: $selected-fg-color
+      {"warning_bg_color_breeze", warningColor},                            // darkly: --warning-bg-color: $warning_color
+      {"warning_fg_color_breeze", selectedFgColor},                         // darkly: $selected-fg-color
+      {"error_bg_color_breeze", errorColor},                                // darkly: --error-bg-color: $error_color
+      {"error_fg_color_breeze", selectedFgColor},                           // darkly: $selected-fg-color
+      {"window_fg_color_breeze", windowForegroundColor},                    // darkly: --window-fg-color: $fg_color
+      {"view_bg_color_breeze", viewBaseColor},                              // darkly: view bg = $base_color
+      {"view_fg_color_breeze", viewForegroundColor},                        // darkly: view fg = $text_color
+      {"headerbar_border_color_breeze", bordersColor},                      // derived: darkly borders for the headerbar edge
+      {"headerbar_backdrop_color_breeze", headerBackdropBackgroundColor},   // darkly: --headerbar-backdrop-color: $backdrop_titlebar_bg_color 
+      {"headerbar_shade_color_breeze", headerBackgroundColor},              // darkly: --headerbar-shade-color: @headerbar_bg_color ($titlebar_bg)
+      {"popover_bg_color_breeze", windowBackgroundColor},                   // darkly: $popover_bg_color: $bg_color
+      {"popover_fg_color_breeze", windowForegroundColor},                   // derived: popover fg = window fg (darkly does not set it)
+      {"scrollbar_outline_color_breeze", bordersColor},                     // derived: darkly borders (darkly does not set it)
+  };
+  outStream << "\n";
+  outStream << "/* Extended color variables for GTK apps compatibility */\n";
+  for (const auto &entry : extended) {
+    outStream << QStringLiteral("@define-color %1 %2;\n")
+                     .arg(entry.first, entry.second.name());
   }
   return 0;
 }
