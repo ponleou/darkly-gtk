@@ -22,8 +22,6 @@
 #include <KConfigGroup>
 #include <KSharedConfig>
 
-#include <algorithm>
-
 namespace {
 using KCS = KColorScheme;
 
@@ -380,26 +378,26 @@ int main(int argc, char *argv[]) {
       csc["active"]["view"].foreground(KCS::NeutralText).color();
 
   QList<QPair<QString, QColor>> extended = {
-      {"accent_color_breeze", selectedBgColor},                             // darkly: --accent-color: $selected_bg_color
-      {"accent_bg_color_breeze", selectedBgColor},                          // darkly: --accent-bg-color: var(--accent-color)
-      {"accent_fg_color_breeze", selectedFgColor},                          // darkly: $selected-fg-color
-      {"destructive_bg_color_breeze", errorColor},                          // darkly: --destructive-bg-color: $destructive-color ($error_color)
-      {"destructive_fg_color_breeze", selectedFgColor},                     // darkly: $selected-fg-color
-      {"success_bg_color_breeze", successColor},                            // darkly: --success-bg-color: $success_color
-      {"success_fg_color_breeze", selectedFgColor},                         // darkly: $selected-fg-color
-      {"warning_bg_color_breeze", warningColor},                            // darkly: --warning-bg-color: $warning_color
-      {"warning_fg_color_breeze", selectedFgColor},                         // darkly: $selected-fg-color
-      {"error_bg_color_breeze", errorColor},                                // darkly: --error-bg-color: $error_color
-      {"error_fg_color_breeze", selectedFgColor},                           // darkly: $selected-fg-color
-      {"window_fg_color_breeze", windowForegroundColor},                    // darkly: --window-fg-color: $fg_color
-      {"view_bg_color_breeze", viewBaseColor},                              // darkly: view bg = $base_color
-      {"view_fg_color_breeze", viewForegroundColor},                        // darkly: view fg = $text_color
-      {"headerbar_border_color_breeze", bordersColor},                      // derived: darkly borders for the headerbar edge
-      {"headerbar_backdrop_color_breeze", headerBackdropBackgroundColor},   // darkly: --headerbar-backdrop-color: $backdrop_titlebar_bg_color 
-      {"headerbar_shade_color_breeze", headerBackgroundColor},              // darkly: --headerbar-shade-color: @headerbar_bg_color ($titlebar_bg)
-      {"popover_bg_color_breeze", windowBackgroundColor},                   // darkly: $popover_bg_color: $bg_color
-      {"popover_fg_color_breeze", windowForegroundColor},                   // derived: popover fg = window fg (darkly does not set it)
-      {"scrollbar_outline_color_breeze", bordersColor},                     // derived: darkly borders (darkly does not set it)
+      {"accent_color", selectedBgColor},                             // darkly: --accent-color: $selected_bg_color
+      {"accent_bg_color", selectedBgColor},                          // darkly: --accent-bg-color: var(--accent-color)
+      {"accent_fg_color", selectedFgColor},                          // darkly: $selected-fg-color
+      {"destructive_bg_color", errorColor},                          // darkly: --destructive-bg-color: $destructive-color ($error_color)
+      {"destructive_fg_color", selectedFgColor},                     // darkly: $selected-fg-color
+      {"success_bg_color", successColor},                            // darkly: --success-bg-color: $success_color
+      {"success_fg_color", selectedFgColor},                         // darkly: $selected-fg-color
+      {"warning_bg_color", warningColor},                            // darkly: --warning-bg-color: $warning_color
+      {"warning_fg_color", selectedFgColor},                         // darkly: $selected-fg-color
+      {"error_bg_color", errorColor},                                // darkly: --error-bg-color: $error_color
+      {"error_fg_color", selectedFgColor},                           // darkly: $selected-fg-color
+      {"window_fg_color", windowForegroundColor},                    // darkly: --window-fg-color: $fg_color
+      {"view_bg_color", viewBaseColor},                              // darkly: view bg = $base_color
+      {"view_fg_color", viewForegroundColor},                        // darkly: view fg = $text_color
+      {"headerbar_border_color", bordersColor},                      // derived: darkly borders for the headerbar edge
+      {"headerbar_backdrop_color", headerBackdropBackgroundColor},   // darkly: --headerbar-backdrop-color: $backdrop_titlebar_bg_color 
+      {"headerbar_shade_color", headerBackgroundColor},              // darkly: --headerbar-shade-color: @headerbar_bg_color ($titlebar_bg)
+      {"popover_bg_color", windowBackgroundColor},                   // darkly: $popover_bg_color: $bg_color
+      {"popover_fg_color", windowForegroundColor},                   // derived: popover fg = window fg (darkly does not set it)
+      {"scrollbar_outline_color", bordersColor},                     // derived: darkly borders (darkly does not set it)
   };
   outStream << "\n";
   outStream << "/* Extended color variables for GTK apps compatibility */\n";
