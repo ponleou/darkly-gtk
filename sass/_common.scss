@@ -1188,7 +1188,7 @@ button {
 }
 
 %undecorated_button {
-  background-color: transparent;
+  background-color: transparent; // TODO: this is somehow overriding button(focused) style (which adds background-color)
   background-image: none;
   box-shadow: inset 0 1px transparentize(white, 1);
   text-shadow: none;
@@ -1264,9 +1264,11 @@ button.color {
 
 /* list buttons */
 /* tone down as per new designs, see issue #1473, #1748 */
+// TODO: this is the root cause (extending undecorated_button which has background_color: transparent)
 list row button.image-button:not(.flat) {
   @extend %undecorated_button;
   &:hover { @include button(hover); }
+  &:focus { @include button(focused); }
   &:active,
   &:checked { @include button(active); }
 }
